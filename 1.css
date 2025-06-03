@@ -1,0 +1,1118 @@
+.a1{
+    /* From Uiverse.io by ilkhoeri */ 
+.switch {
+  --w-switch: 120px;
+  --h-switch: calc((var(--w-switch) / 3));
+  --inset-switch: calc(var(--w-switch) * (3.75 / 100));
+  --clr-on: #27ae60;
+  --clr-off: #ff0000;
+  --shadow-sz: calc((var(--w-switch) * (1.2 / 100)));
+  width: var(--w-switch);
+  height: var(--h-switch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333;
+  margin: 0px auto;
+  position: relative;
+  border-radius: 9999px;
+  box-shadow:
+    inset 0px var(--shadow-sz) var(--shadow-sz) rgba(0, 0, 0, 0.5),
+    0px var(--shadow-sz) var(--shadow-sz) rgba(255, 255, 255, 0.2),
+    0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.switch::before,
+.switch::after {
+  --sh-i: calc(var(--w-switch) * (0.8 / 100));
+  --sh-o: calc((var(--w-switch) * (0.8 / 100)) * -1);
+  position: absolute;
+  z-index: 0;
+  font-size: calc(var(--w-switch) * (12 / 100));
+  line-height: 1.5;
+  font-weight: bold;
+  text-shadow:
+    0 var(--sh-o) var(--sh-i) #4e4e4e,
+    var(--sh-o) 0 var(--sh-i) #4e4e4e,
+    var(--sh-o) var(--sh-o) var(--sh-i) #4e4e4e,
+    var(--sh-i) var(--sh-o) var(--sh-i) #1d1d1d,
+    0 var(--sh-i) var(--sh-i) #111111,
+    var(--sh-o) var(--sh-i) var(--sh-i) #111111,
+    var(--sh-i) var(--sh-i) var(--sh-i) #000000,
+    var(--sh-i) 0 var(--sh-i) #000000;
+}
+.switch::before {
+  content: "ON";
+  color: var(--clr-on);
+  left: 12.5%;
+}
+.switch::after {
+  content: "OFF";
+  color: var(--clr-off);
+  right: 12.5%;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  display: none;
+  visibility: hidden;
+}
+
+.slider {
+  display: block;
+  width: calc((var(--w-switch) / 2) - (var(--inset-switch) * 2));
+  height: calc(100% - (var(--inset-switch) * 2));
+  cursor: pointer;
+  position: absolute;
+  left: var(--inset-switch);
+  z-index: 1;
+  margin-bottom: -1px;
+  background: #fcfff4
+    linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 9999px;
+  transition: all 0.4s ease;
+  box-shadow:
+    inset 0 -2px 10px 1px rgba(100, 100, 100),
+    0px 2px 5px 0px rgba(0, 0, 0, 0.3),
+    0 1px 10px rgba(0, 0, 0, 0.3);
+}
+.slider::after {
+  content: "";
+  --sz-bump: calc(
+    100% - ((var(--w-switch) * (10 / 100)) + (var(--inset-switch) / 2))
+  );
+  width: var(--sz-bump);
+  height: var(--sz-bump);
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--clr-off);
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  box-shadow:
+    inset 0px 1px 1px rgba(0, 0, 0),
+    0px 1px 0px rgba(255, 255, 255, 0.9);
+}
+
+.switch input[type="checkbox"]:checked + .slider {
+  left: calc((var(--w-switch) / 2) + var(--inset-switch));
+}
+.switch input[type="checkbox"]:checked + .slider::after {
+  background: var(--clr-on);
+}
+}
+
+.a2{
+    /* From Uiverse.io by rraushan1205 */ 
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 1.2em;
+  height: 3.3em;
+}
+
+/* Hide default HTML checkbox */
+.switch .chk {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(230, 0, 0);
+  transition: .4s;
+  border-radius: 5px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: .5em;
+  width: 2.4em;
+  border-radius: 5px;
+  left: -0.6em;
+  top: 0.2em;
+  background-color: rgb(68, 66, 66);
+  box-shadow: 0 6px 7px rgba(0,0,0,0.3);
+  transition: .4s;
+}
+
+.slider:before, .slider:after {
+  content: "";
+  display: block;
+}
+
+.slider:after {
+  background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.15) 0) 0 50% / 50% 100%,
+		repeating-linear-gradient(90deg,rgb(78, 78, 78) 0,rgb(141, 135, 135),rgb(97, 96, 96) 20%,rgb(97, 95, 95) 20%,rgb(99, 99, 99) 40%) 0 50% / 50% 100%,
+		radial-gradient(circle at 50% 50%,rgb(95, 94, 94) 25%, transparent 26%);
+  background-repeat: no-repeat;
+  border: 0.25em solid transparent;
+  border-left: 0.4em solid #464646;
+  border-right: 0 solid transparent;
+  transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+  transform: translateX(-22.5%) rotate(90deg);
+  transform-origin: 25% 50%;
+  position: relative;
+  top: 0.5em;
+  left: 0.55em;
+  width: 2em;
+  height: 1em;
+  box-sizing: border-box;
+}
+
+.chk:checked + .slider {
+  background-color: limegreen;
+}
+
+.chk:focus + .slider {
+  box-shadow: 0 0 1px limegreen;
+}
+
+.chk:checked + .slider:before {
+  transform: translateY(2.3em);
+}
+
+.chk:checked + .slider:after {
+  transform: rotateZ(90deg) rotateY(180deg) translateY(0.45em) translateX(-1.4em);
+}
+}
+
+.a3{
+    /* From Uiverse.io by ForzDz */ 
+.rating {
+  display: inline-block;
+  opacity: 1;
+}
+
+.rating input {
+  display: none;
+  opacity: 1;
+}
+
+.rating label {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 30px;
+  transition: color 0.3s;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #ffc400;
+  transform: scale(1.2);
+  transition: color 0.3s, transform 0.3s, box-shadow 0.3s;
+  animation: bounce 0.5s ease-in-out alternate;
+}
+
+@keyframes bounce {
+  to {
+    transform: scale(1.3);
+  }
+}
+}
+
+.a4{
+    /* From Uiverse.io by FColombati */ 
+.rangeWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+[type="range"].kawaii {
+  --base: #ff0000;
+  --light: color-mix(in sRGB, var(--base) 60%, #fff);
+  --lighter: color-mix(in sRGB, var(--base) 30%, #fff);
+  --dark: color-mix(in sRGB, var(--base) 95%, #000);
+  --transparent: color-mix(in sRGB, var(--base) 0%, #0000);
+  appearance: none;
+  font-size: 1em;
+  width: 20em;
+  height: 2em;
+  border: 0.5em solid #fff;
+  border-radius: 2em;
+  box-shadow:
+    0 0 1em #0001,
+    0 0.25em 0.5em #0001;
+  overflow: hidden;
+}
+
+[type="range"].kawaii::-webkit-slider-runnable-track {
+  background:
+    radial-gradient(
+      circle at 0.75em 0.6em,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    radial-gradient(
+      circle at 1.25em 0.6em,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    radial-gradient(
+      circle at 5em 0.6em,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    linear-gradient(var(--light) 0 0) 1.25em 0.4em / 3.75em calc(0.4em - 0.5px)
+      no-repeat,
+    linear-gradient(90deg, var(--base), var(--transparent) 1em),
+    linear-gradient(#0000 70%, var(--dark) 80%),
+    var(--base);
+  border-radius: 2em;
+  height: 100%;
+  overflow: hidden;
+}
+
+[type="range"].kawaii::-webkit-slider-thumb {
+  appearance: none;
+  height: 2em;
+  width: 2em;
+  color: var(--lighter);
+  background:
+    radial-gradient(
+      circle at 0.75em 0.6em,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    linear-gradient(90deg, #0000 0.75em, var(--base) 0) 0 0 / 100% 50% no-repeat;
+  border-radius: 50%;
+  box-shadow:
+    inset -0.5em 0 0.5em -0.25em var(--base),
+    1em 0 0 0.25em,
+    2em 0 0 0.25em,
+    3em 0 0 0.25em,
+    4em 0 0 0.25em,
+    5em 0 0 0.25em,
+    6em 0 0 0.25em,
+    7em 0 0 0.25em,
+    8em 0 0 0.25em,
+    9em 0 0 0.25em,
+    10em 0 0 0.25em,
+    11em 0 0 0.25em,
+    12em 0 0 0.25em,
+    12em 0 0 0.25em,
+    13em 0 0 0.25em,
+    14em 0 0 0.25em,
+    15em 0 0 0.25em,
+    16em 0 0 0.25em,
+    17em 0 0 0.25em,
+    18em 0 0 0.25em,
+    19em 0 0 0.25em;
+}
+
+[type="range"].kawaii::-moz-range-track {
+  background:
+    radial-gradient(
+      circle at 0.75em 30%,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    radial-gradient(
+      circle at 1.5em 30%,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    radial-gradient(
+      circle at 5.5em 30%,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    linear-gradient(var(--light) 0 0) 1.5em calc(15% + 0.18em) / 4em
+      calc(0.4em - 0.5px) no-repeat,
+    linear-gradient(90deg, var(--base), var(--transparent) 1em),
+    linear-gradient(var(--transparent) 70%, var(--dark) 80%),
+    var(--base);
+  border-radius: 2em;
+  height: 100%;
+  overflow: hidden;
+}
+
+[type="range"].kawaii::-moz-range-thumb {
+  appearance: none;
+  height: 2em;
+  width: 2em;
+  border: 0;
+  color: var(--lighter);
+  background:
+    radial-gradient(
+      circle at 0.75em 0.6em,
+      var(--light) calc(0.2em - 1px),
+      #0000 0.2em
+    ),
+    linear-gradient(90deg, var(--transparent) 0.75em, var(--base) 0) 0 0 / 100%
+      50% no-repeat;
+  border-radius: 50% 0 50% 50% 0;
+  box-shadow:
+    inset -0.5em 0 0.5em -0.25em var(--base),
+    1em 0 0 0.25em,
+    2em 0 0 0.25em,
+    3em 0 0 0.25em,
+    4em 0 0 0.25em,
+    5em 0 0 0.25em,
+    6em 0 0 0.25em,
+    7em 0 0 0.25em,
+    8em 0 0 0.25em,
+    9em 0 0 0.25em,
+    10em 0 0 0.25em,
+    11em 0 0 0.25em,
+    12em 0 0 0.25em,
+    12em 0 0 0.25em,
+    13em 0 0 0.25em,
+    14em 0 0 0.25em,
+    15em 0 0 0.25em,
+    16em 0 0 0.25em,
+    17em 0 0 0.25em,
+    18em 0 0 0.25em,
+    19em 0 0 0.25em;
+}
+}
+
+.a5{
+    /* From Uiverse.io by Novaxlo */ 
+.futuristic-input {
+  width: 15em;
+  height: 6em;
+  position: relative;
+  overflow: hidden;
+  --firstcolor: #171033;
+  --secondcolor: #171033;
+  transition: all 0.25s ease-in-out;
+  padding: 0em;
+  margin: 0em;
+  animation: changeborder 2.5s infinite linear;
+}
+
+@keyframes changeborder {
+  0% {
+    border: 0.1em solid #515267;
+    border-left: 0.1em solid white;
+  }
+  25% {
+    border: 0.1em solid #515267;
+    border-top: 0.1em solid white;
+  }
+  50% {
+    border: 0.1em solid #515267;
+    border-right: 0.1em solid white;
+  }
+  70% {
+    border: 0.1em solid #515267;
+    border-bottom: 0.1em solid white;
+  }
+  100% {
+    border: 0.1em solid #515267;
+    border-left: 0.1em solid white;
+  }
+}
+
+.futuristic-input:hover {
+  transform: scale(1.1);
+  animation: spawn-light 1s;
+  animation-iteration-count: 1s;
+}
+
+@keyframes spawn-light {
+  0% {
+    background-color: white;
+    box-shadow: 0em 0em 5em white;
+  }
+  50% {
+    box-shadow: 0em 0em 0em white;
+  }
+  100% {
+    background-color: rgb(255, 255, 255, 0);
+  }
+}
+.input {
+  width: 80%;
+  height: 1.75em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: 0.15em solid white;
+  background-color: var(--firstcolor);
+  font-weight: bold;
+  padding-left: 0.25em;
+  color: white;
+  outline: none;
+  font-weight: 100;
+}
+.triangle-input-up {
+  width: 0em;
+  height: 0em;
+  border-left: 1em solid transparent;
+  border-bottom: 1em solid var(--secondcolor);
+}
+.triangle-input-left {
+  width: 0em;
+  height: 0em;
+  border-right: 1em solid transparent;
+  border-bottom: 1em solid var(--firstcolor);
+}
+.triangle-input-left2 {
+  width: 0em;
+  height: 0em;
+  border-right: 1em solid transparent;
+  border-bottom: 1em solid white;
+}
+.triangle-input-down {
+  width: 0em;
+  height: 0em;
+  border-bottom: 1em solid transparent;
+  border-left: 1em solid var(--firstcolor);
+}
+.triangle-input-right {
+  width: 0em;
+  height: 0em;
+  border-left: 1em solid transparent;
+  border-top: 1em solid var(--secondcolor);
+}
+.triangle-input-right2 {
+  width: 0em;
+  height: 0em;
+  border-left: 1em solid transparent;
+  border-top: 1em solid white;
+}
+.futuristic-input-space {
+  width: 100%;
+  height: 1em;
+  display: flex;
+}
+
+.futuristic-input-space2 {
+  width: 100%;
+  height: 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+.triangle-input-bar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--firstcolor);
+}
+.triangle-input-bar2 {
+  width: 5em;
+  height: 100%;
+  background-color: var(--firstcolor);
+}
+.triangle-input-bar3 {
+  width: 3em;
+  height: 100%;
+  background-color: white;
+}
+.futuristic-input-space-2 {
+  width: 2em;
+  height: 1em;
+  display: flex;
+}
+
+.futuristic-input-enter {
+  color: white;
+  top: -0.35em;
+  position: absolute;
+  left: 3.2em;
+  font-weight: bold;
+  animation: color-change 2.5s infinite linear;
+  -webkit-text-stroke: 0.01em white;
+  font-size: 1.25em;
+  text-shadow: 1em 0em 1em white;
+}
+
+.futuristic-input-name {
+  color: white;
+  bottom: -0.4em;
+  position: absolute;
+  right: 3.25em;
+  font-weight: bold;
+  animation: color-change 2.5s infinite linear 0.5s;
+  -webkit-text-stroke: 0.01em white;
+  font-size: 1.25em;
+  text-shadow: -2em 0em 1em white;
+}
+
+@keyframes color-change {
+  0% {
+    color: white;
+  }
+  25% {
+    color: white;
+  }
+  30% {
+    color: transparent;
+  }
+  35% {
+    color: white;
+  }
+  40% {
+    color: transparent;
+  }
+  45% {
+    color: white;
+  }
+  100% {
+    color: white;
+  }
+}
+}
+
+.a6{
+    /* From Uiverse.io by reglobby */ 
+.input-container {
+  position: relative;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.input-field-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.holo-input {
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 12, 36, 0.7);
+  border: none;
+  outline: none;
+  padding: 0 60px 0 20px;
+  color: rgba(0, 195, 255, 0.9);
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 4px;
+  box-shadow:
+    0 0 15px rgba(0, 140, 255, 0.3),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 160, 255, 0.7);
+  z-index: 1;
+}
+
+.holo-input::placeholder {
+  color: rgba(0, 110, 200, 0.4);
+  transition: all 0.3s ease;
+}
+
+.input-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border: 1px solid rgba(0, 150, 255, 0.4);
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.input-border::before,
+.input-border::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 150, 255, 0.7);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.input-border::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.input-border::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+.holo-scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 150, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(0, 150, 255, 0.5) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: blur(1px);
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.input-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 150, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  opacity: 0;
+  border-radius: 4px;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.input-active-indicator {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 150, 255, 0.7);
+  border-radius: 50%;
+  right: 20px;
+  top: 25px;
+  opacity: 0.3;
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.input-label {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  color: rgba(0, 150, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  text-shadow: 0 0 5px rgba(0, 150, 255, 0.5);
+}
+
+.input-data-visualization {
+  position: absolute;
+  width: calc(100% - 40px);
+  height: 3px;
+  bottom: 12px;
+  left: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.data-segment {
+  width: 4%;
+  height: 100%;
+  background: rgba(0, 150, 255, 0.3);
+  transition: all 0.5s ease;
+}
+
+.data-segment:nth-child(even) {
+  height: 5px;
+  transform: translateY(-1px);
+}
+
+.input-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.input-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 150, 255, 0.7);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(1px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 150, 255, 0.7);
+}
+
+.input-holo-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 150, 255, 0.05) 25%,
+    rgba(0, 150, 255, 0.02) 50%,
+    rgba(0, 150, 255, 0.05) 75%
+  );
+  background-size: 8px 100%;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 4;
+  mix-blend-mode: overlay;
+}
+
+.interface-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.interface-line {
+  position: absolute;
+  background: rgba(0, 150, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.interface-line:nth-child(1) {
+  width: 20px;
+  height: 1px;
+  top: 15px;
+  right: 15px;
+}
+
+.interface-line:nth-child(2) {
+  width: 1px;
+  height: 20px;
+  top: 15px;
+  right: 15px;
+}
+
+.interface-line:nth-child(3) {
+  width: 1px;
+  height: 20px;
+  bottom: 15px;
+  left: 15px;
+}
+
+.interface-line:nth-child(4) {
+  width: 20px;
+  height: 1px;
+  bottom: 15px;
+  left: 15px;
+}
+
+.hex-decoration {
+  position: absolute;
+  width: 30px;
+  height: 34px;
+  background: transparent;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.input-status {
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+  font-size: 12px;
+  color: rgba(0, 150, 255, 0.5);
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+@keyframes scan-animation {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes data-pulse {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.8);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.holo-input:focus {
+  background: rgba(0, 22, 46, 0.8);
+  box-shadow:
+    0 0 20px rgba(0, 150, 255, 0.4),
+    inset 0 0 15px rgba(0, 0, 0, 0.9);
+  color: rgba(0, 210, 255, 1);
+}
+
+.holo-input:focus::placeholder {
+  color: rgba(0, 150, 255, 0.3);
+  transform: translateX(10px);
+}
+
+.holo-input:focus ~ .input-border {
+  border-color: rgba(0, 180, 255, 0.7);
+}
+
+.holo-input:focus ~ .input-border::before,
+.holo-input:focus ~ .input-border::after {
+  border-color: rgba(0, 180, 255, 1);
+  width: 30px;
+  height: 30px;
+}
+
+.holo-input:focus ~ .holo-scan-line {
+  opacity: 1;
+  animation: scan-animation 2s infinite ease-in-out;
+}
+
+.holo-input:focus ~ .input-glow {
+  opacity: 1;
+}
+
+.holo-input:focus ~ .input-active-indicator {
+  opacity: 1;
+  background: rgba(0, 200, 255, 1);
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.holo-input:focus ~ .input-label {
+  color: rgba(0, 200, 255, 1);
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+  transform: translateY(-5px);
+}
+
+.holo-input:focus ~ .input-data-visualization {
+  opacity: 1;
+}
+
+.holo-input:focus ~ .input-data-visualization .data-segment {
+  animation: data-pulse 2s infinite;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+.holo-input:focus ~ .input-status {
+  opacity: 1;
+}
+
+.holo-input:focus ~ .interface-lines .interface-line {
+  background: rgba(0, 200, 255, 0.6);
+}
+
+.holo-input:focus ~ .hex-decoration {
+  border-color: rgba(0, 200, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+  transform: translateY(-50%) rotate(30deg);
+}
+
+.holo-input:focus ~ .input-particles .input-particle {
+  opacity: 1;
+  animation: particle-float 3s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s);
+}
+
+.holo-input:hover {
+  background: rgba(0, 15, 40, 0.75);
+}
+
+.holo-input:hover ~ .input-active-indicator {
+  opacity: 0.6;
+}
+
+.holo-input:hover ~ .hex-decoration {
+  border-color: rgba(0, 180, 255, 0.5);
+}
+
+.power-indicator {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 180, 255, 0.7) 0%,
+    rgba(0, 180, 255, 0.3) 100%
+  );
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: 3;
+}
+
+.holo-input:focus ~ .power-indicator {
+  transform: scaleX(1);
+}
+
+.input-decoration {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decoration-dot {
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 150, 255, 0.7);
+  border-radius: 50%;
+  margin: 3px 0;
+}
+
+.decoration-line {
+  width: 15px;
+  height: 1px;
+  background: rgba(0, 150, 255, 0.5);
+  margin: 3px 0;
+}
+
+.holo-input:focus ~ .input-decoration {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-5px);
+}
+
+.holo-input:focus ~ .input-decoration .decoration-dot {
+  background: rgba(0, 200, 255, 1);
+  box-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
+}
+
+.holo-input:focus ~ .input-decoration .decoration-line {
+  background: rgba(0, 200, 255, 0.7);
+  box-shadow: 0 0 3px rgba(0, 200, 255, 0.5);
+}
+}
+
+.a7{
+    /* From Uiverse.io by Akshdeep74644 */ 
+.container {
+  position: relative;
+  width: 200px;
+}
+
+.container input {
+  width: 100%;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #222;
+  padding: 8px;
+}
+
+.container label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(105, 105, 105, 0.7);
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: .5s;
+  font-weight: bold;
+}
+
+.container input:valid ~ label,
+.container input:focus ~ label {
+  color: rgb(10, 131, 212);
+  transform: translateY(-15px);
+  font-size: .6rem;
+}
+
+.container i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #222;
+}
+
+.container i:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff1b69, #ff0, #2196f3, #9c27b0, #ff1b69);
+  animation: animate 3s linear infinite;
+}
+}
